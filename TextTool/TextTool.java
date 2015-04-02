@@ -21,6 +21,7 @@ public class TextTool extends JFrame{
     private Configurator TextToolConfigurator;
 
     public TextTool() {
+        TextToolConfigurator = new Configurator(this);
         InitComponents();
     }
 
@@ -32,10 +33,15 @@ public class TextTool extends JFrame{
         
         TextToolConfigurator.InitializeControls(Buttons);
         //add buttons to the frame
-        for(JButton arrBtns:Buttons)
+//        for(JButton arrBtns:Buttons)
+//        {
+//            add(arrBtns);
+//        }
+        if(Buttons==null)
         {
-            add(arrBtns);
+            System.out.println("whe");
         }
+        add(Buttons[0]);
         return 0;//everything is ok
     }
 

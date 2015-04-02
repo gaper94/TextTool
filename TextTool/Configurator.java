@@ -24,7 +24,8 @@ public class Configurator {
     
     public Configurator(TextTool TextTool)
     {
-        this.TextTool = TextTool;
+        this.TextTool      = TextTool;
+        TextToolController = new CommandController(TextTool);
     }
     //languages confugred 
     public static int GetNumberOfLanguagesConfigured()
@@ -39,6 +40,7 @@ public class Configurator {
     
     public  void InitializeControls(JButton Buttons[])
     {
+ 
         TextToolController.SetControls(Buttons);
     }
     
