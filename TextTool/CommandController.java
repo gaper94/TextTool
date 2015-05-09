@@ -1,58 +1,46 @@
 
 package TextTool;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import com.sun.javafx.scene.control.skin.ButtonSkin;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 
 /**
- * @brief Initialize controls for Text Tool 
+ * @brief - Class containing definitions for the Text tool controller
  * @author GAPer
  * @version 1.0
- * @date of last modification 4 April 2015
+ * @date of last modification 24 April 2015
  */
 
-enum ButtonsDscr{
-    EXIT_BUTTON(0);
-    
-    private final int BtnIdx;
-
-    private ButtonsDscr(int BtnIdx) {
-        this.BtnIdx = BtnIdx;
-    }
-    
-    public int GetIdx()
-    {
-        return BtnIdx;
-    }
-}
 public class CommandController {
-    //reference to the TextTool to call functions
-    private TextTool TextToolRef;
-    private static final int NUMBER_OF_BUTTONS = 1;
     
-    public CommandController(TextTool TextToolRef)
+    List<JButton> TextToolButtons;
+    
+    public CommandController()
     {
-        this.TextToolRef = TextToolRef;
+        //empty for now
     }
     
-    public void SetControls(JButton Buttons[])
+    public List<JButton> SetControls()
     {
-        Buttons = new JButton[NUMBER_OF_BUTTONS];
-
-        SetExitBtn(Buttons[ButtonsDscr.EXIT_BUTTON.GetIdx()]);
+        TextToolButtons = new ArrayList<>();
+        InitExitBtn();
+        return TextToolButtons;
+    }
+    
+    private void InitExitBtn()
+    {
+        JButton ExitBtn = new JButton(ButtonDefinition.EXIT_BTN.GetName());
+        ExitBtn.addActionListener( evt -> System.exit(0) );
+        ExitBtn.setVerticalTextPosition(AbstractButton.CENTER);
+        ExitBtn.setSize( ButtonDefinition.EXIT_BTN.GetShape().height,
+                         ButtonDefinition.EXIT_BTN.GetShape().width );
         
-    }
-    
-    private void SetExitBtn(JButton btn)
-    {
-        btn = new JButton("Exit");
-        btn.addActionListener( new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        } );
+        ExitBtn.setLocation( ButtonDefinition.EXIT_BTN.GetShape().coordinates.x,
+                             ButtonDefinition.EXIT_BTN.GetShape().coordinates.y );
+        
+        TextToolButtons.add(ExitBtn);
     }
 }
-

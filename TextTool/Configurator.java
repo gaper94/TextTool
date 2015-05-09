@@ -1,9 +1,7 @@
 package TextTool;
 
-
-
-
 import java.util.HashMap;
+import java.util.List;
 import javax.swing.JButton;
 
 /**
@@ -24,24 +22,25 @@ public class Configurator {
     
     public Configurator(TextTool TextTool)
     {
-        this.TextTool      = TextTool;
-        TextToolController = new CommandController(TextTool);
+        this.TextTool = TextTool;
+        this.TextToolController = new CommandController();
     }
+    
     //languages confugred 
     public static int GetNumberOfLanguagesConfigured()
     {
         return Languages.size();
     }
+    
     //insert new language in the Text Tool
     public static void AddNewLanguage(String LangDscr)
     {
         Languages.put(LangDscr, Languages.size()+ 1 );
     }
     
-    public  void InitializeControls(JButton Buttons[])
+    public  List<JButton> InitializeControls()
     {
- 
-        TextToolController.SetControls(Buttons);
+        return TextToolController.SetControls();
     }
     
 
