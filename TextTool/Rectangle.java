@@ -2,18 +2,22 @@
 package TextTool;
 
 /**
- *
- * @author GKO
+ * @brief - Class containing rectangle definitions
+ * @author GAPer
+ * @version 1.0
+ * @date of last modification 9 May 2015
  */
-public class Rectangle {
-    public Point coordinates;
-    public int height;
-    public int width;
+public class Rectangle
+{
     
-    public Rectangle( int x, int y, int height, int width)
+    public Point coordinates;
+    public int     height;
+    public int     width;
+    
+    public Rectangle( int x, int y, int width, int height)
     {
         coordinates = new Point(x, y);
-        this.height = height;
-        this.width = width;
+        this.width    = width;
+        this.height   = height;
     }
 }

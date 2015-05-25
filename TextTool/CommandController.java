@@ -1,11 +1,15 @@
 
 package TextTool;
 
-import com.sun.javafx.scene.control.skin.ButtonSkin;
+/*=================================*/
+/*
+* Imports
+*/
+/*=================================*/
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 
 /**
  * @brief - Class containing definitions for the Text tool controller
@@ -14,33 +18,38 @@ import javax.swing.JButton;
  * @date of last modification 24 April 2015
  */
 
-public class CommandController {
+public class CommandController
+{
     
-    List<JButton> TextToolButtons;
+    private List<JButton>   TextToolButtons;
+    private JScrollPane      EntityChooser;
     
     public CommandController()
     {
-        //empty for now
+        //empty
     }
     
-    public List<JButton> SetControls()
+    public List<JButton> SetButtons(TextTool TextToolRef)
     {
         TextToolButtons = new ArrayList<>();
-        InitExitBtn();
+        InitializeButtons( TextToolRef );
+        
         return TextToolButtons;
     }
     
-    private void InitExitBtn()
+    private void InitializeButtons( TextTool TextToolRef )
     {
-        JButton ExitBtn = new JButton(ButtonDefinition.EXIT_BTN.GetName());
-        ExitBtn.addActionListener( evt -> System.exit(0) );
-        ExitBtn.setVerticalTextPosition(AbstractButton.CENTER);
-        ExitBtn.setSize( ButtonDefinition.EXIT_BTN.GetShape().height,
-                         ButtonDefinition.EXIT_BTN.GetShape().width );
-        
-        ExitBtn.setLocation( ButtonDefinition.EXIT_BTN.GetShape().coordinates.x,
-                             ButtonDefinition.EXIT_BTN.GetShape().coordinates.y );
-        
-        TextToolButtons.add(ExitBtn);
+        JButton ButtonToAdd = null;
+        for( ButtonDefinition Button : ButtonDefinition.values() )
+        {
+             ButtonToAdd = new JButton( Button.GetName() ); 
+             ButtonToAdd.setBounds(  Button.GetShape().coordinates.x,  
+                                                    Button.GetShape().coordinates.y, 
+                                                    Button.GetShape().width, 
+                                                    Button.GetShape().height );
+             ButtonToAdd.addActionListener( new NewRecordButtonListener(TextToolRef) );
+             TextToolButtons.add( ButtonToAdd );
+        }   
     }
+
 }

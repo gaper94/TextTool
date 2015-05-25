@@ -1,5 +1,10 @@
 package TextTool;
 
+/*=================================*/
+/*
+* Imports
+*/
+/*=================================*/
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JButton;
@@ -10,19 +15,26 @@ import javax.swing.JButton;
  * @version 1.0
  * @date of last modification 4 April 2015
  */
-public class Configurator {
-    /* Map containing all configured languages in Text Tool  */
-    static HashMap<String, Integer> Languages;
-    // Screen resolution
-    public static final int SCREEN_WIDTH  = 600;
-    public static final int SCREEN_HEIGHT = 400;
+public class Configurator
+{
     
-    private TextTool TextTool;
-    private CommandController TextToolController;
+     //Map containing all configured languages in Text Tool 
+    static HashMap<String, Integer> Languages;
+    
+    // Screen resolution
+    public static final int SCREEN_WIDTH  = 1080;
+    public static final int SCREEN_HEIGHT = 720;
+    
+    // Add/Edit panel resolution
+    public static final int EDIT_PANEL_WIDTH  = 640;
+    public static final int EDIT_PANEL_HEIGHT = 482;
+    
+    private final  TextTool                  TextTool;
+    private final  CommandController TextToolController;
     
     public Configurator(TextTool TextTool)
     {
-        this.TextTool = TextTool;
+        this.TextTool               = TextTool;
         this.TextToolController = new CommandController();
     }
     
@@ -38,9 +50,9 @@ public class Configurator {
         Languages.put(LangDscr, Languages.size()+ 1 );
     }
     
-    public  List<JButton> InitializeControls()
+    public  List<JButton> InitializeButtons()
     {
-        return TextToolController.SetControls();
+        return this.TextToolController.SetButtons( TextTool );
     }
     
 

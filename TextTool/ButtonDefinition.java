@@ -8,25 +8,27 @@ package TextTool;
  * @date of last modification 24 April 2015
  */
 
-public enum ButtonDefinition {
+public enum ButtonDefinition 
+{
     
     
-    EXIT_BTN(1 , "Exit" , new Rectangle(0, 0, 100, 10));//exit button
+    EXIT_BTN        ( 1 , "Exit"            , new Rectangle( 600, 10 , 150, 50 )), 
+    NEW_RECORD_BTN  ( 2 , "Add New Record"  , new Rectangle( 600, 60 , 150, 50 ));
 
-    private final int BTN_ID;// unique id to identify the button
-    private final String BUTTON_TEXT;
-    private final Rectangle SHAPE_DEF;
+    private final int                    BUTTON_ID;// unique id to identify the button
+    private final String               BUTTON_TEXT;// the text in the button
+    private final Rectangle        SHAPE_DEF;// the location and size of the button
     
     ButtonDefinition(int ID, String Text, Rectangle ShapeDef)
     {
-        this.BTN_ID = ID;
-        BUTTON_TEXT = Text;
-        SHAPE_DEF  = ShapeDef;
+        BUTTON_ID                  = ID;
+        BUTTON_TEXT            = Text;
+        SHAPE_DEF                 = ShapeDef;
     }
         
     public int GetId()
     {
-        return BTN_ID;
+        return BUTTON_ID;
     }
     
     public String GetName()
@@ -38,4 +40,5 @@ public enum ButtonDefinition {
     {
         return SHAPE_DEF;
     }
+    
 }
